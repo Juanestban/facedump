@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bm87pn04dp24r"]
+
+[ext_resource type="Script" uid="uid://b4bvodj2n2u1h" path="res://scripts/voxel_world.gd" id="1_qbjq6"]
+[ext_resource type="Script" uid="uid://b8v1t132mw1fk" path="res://scripts/chunk_manager.gd" id="2_4lkjp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbjq6"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_4lkjp"]
+sky_material = SubResource("ProceduralSkyMaterial_qbjq6")
+
+[sub_resource type="Environment" id="Environment_cq24x"]
+background_mode = 2
+sky = SubResource("Sky_4lkjp")
+glow_enabled = true
+
+[node name="MarchingCubesScene" type="Node3D" unique_id=898016840 node_paths=PackedStringArray("spawn_point", "chunk_manager")]
+script = ExtResource("1_qbjq6")
+spawn_point = NodePath("SpawnPoint")
+colors = Array[Color]([Color(0.42352942, 0.16470589, 0.13333334, 1), Color(0, 0.4509804, 0.4509804, 1), Color(0.39215687, 0.39215687, 0.20784314, 1), Color(0.11764706, 0.42352942, 0.23137255, 1), Color(0.13333334, 0.13333334, 0.42352942, 1), Color(0.34509805, 0.17254902, 0.36078432, 1)])
+chunk_manager = NodePath("ChunkManager")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1037838193]
+environment = SubResource("Environment_cq24x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=180745873]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2039317046]
+transform = Transform3D(1, 0, 0, 0, 0.94128466, 0.33761418, 0, -0.33761418, 0.94128466, 0, 1.5783503, 4.218769)
+
+[node name="SpawnPoint" type="Node3D" parent="." unique_id=302991358]
+
+[node name="ChunkManager" type="Node" parent="." unique_id=1334909877]
+script = ExtResource("2_4lkjp")
+metadata/_custom_type_script = "uid://b8v1t132mw1fk"
